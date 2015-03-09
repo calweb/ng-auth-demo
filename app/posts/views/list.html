@@ -1,0 +1,6 @@
+<a href="#/posts/new" class="btn btn-success">Create New Post</a>
+<section data-ng-repeat="post in postsCtl.posts">
+    <h2>{{post.title}}</h2>
+    <p>{{post.content}}</p>
+    <a href="#/posts/{{post._id}}">view more</a>
+</section>

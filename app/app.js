@@ -1,4 +1,10 @@
-angular.module('MyApp', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap','auth', 'profile'])
+angular.module('MyApp', [
+  'ngMessages',
+  'ngRoute',
+  'mgcrea.ngStrap',
+  'auth',
+  'profile',
+  'posts'])
   .config(function($routeProvider, $authProvider) {
     var checkAuth = function ($q, $location, $auth) {
       var dfd = $q.defer();

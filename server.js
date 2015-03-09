@@ -16,9 +16,10 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var mongoose = require('mongoose');
 var request = require('request');
+var mongoskin = require('mongoskin');
 
 var config = require('./config');
-
+var db = mongoskin.db(config.MONGO_URI, {safe: true});
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: { type: String, select: false },
@@ -56,6 +57,7 @@ userSchema.methods.comparePassword = function(password, done) {
 var User = mongoose.model('User', userSchema);
 
 mongoose.connect(config.MONGO_URI);
+
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
 });
@@ -740,6 +742,66 @@ app.get('/auth/unlink/:provider', ensureAuthenticated, function(req, res) {
     });
   });
 });
+
+/*
+ |--------------------------------------------------------------------------
+ | Generic collections
+ |--------------------------------------------------------------------------
+*/
+
+// Setup the collectionName param for requests
+app.param('collectionName', function(req, res, next, collectionName){
+  req.collection = db.collection(collectionName)
+  return next()
+})
+
+// API endpoints
+// Thanks to http://webapplog.com/tutorial-node-js-and-mongodb-json-rest-api-server-with-mongoskin-and-express-js/
+// for the cool help
+
+// GET /collections/:collectionName
+app.get('/api/collections/:collectionName', function(req, res, next) {
+  req.collection.find({},{limit:100, sort: [['_id',-1]]}).toArray(function(e, results){
+    if (e) return next(e)
+    res.send(results)
+  })
+})
+
+// POST /collections/:collectionName
+app.post('/api/collections/:collectionName', function(req, res, next) {
+  req.collection.insert(req.body, {}, function(e, results){
+    if (e) return next(e)
+    res.send(results[0])
+  })
+})
+
+
+// GET /collections/:collectionName/:id
+app.get('/api/collections/:collectionName/:id', function(req, res, next) {
+  req.collection.findById(req.params.id, function(e, result){
+    if (e) return next(e)
+    res.send(result)
+  })
+})
+
+// PUT /collections/:collectionName/:id
+app.put('/api/collections/:collectionName/:id', function(req, res) {
+
+  // backbone sends the _id in the payload, but mongo doesn't wan it in the $set
+  delete req.body._id
+
+  req.collection.updateById(req.params.id, {$set:req.body}, {safe:true, multi:false}, function(e, result){
+    res.send((result===1)? 200 : 404 )
+  })
+})
+
+// DELETE /collections/:collectionName
+app.delete('/api/collections/:collectionName/:id', function(req, res, next) {
+  req.collection.removeById(req.params.id, function(e, result){
+    if (e) return next(e)
+    res.send((result===1)?{msg:'success'}:{msg:'error'})
+  })
+})
 
 /*
  |--------------------------------------------------------------------------

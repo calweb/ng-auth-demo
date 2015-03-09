@@ -9,7 +9,9 @@
     "jwt-simple": "^0.2.0",
     "lodash": "^3.4.0",
     "moment": "^2.9.0",
+    "mongodb": "^1.4.34",
     "mongoose": "^3.8.24",
+    "mongoskin": "^1.4.12",
     "morgan": "^1.5.1",
     "request": "^2.53.0"
   }
