@@ -1,6 +1,7 @@
 angular.module('MyApp', [
   'ngMessages',
   'ngRoute',
+  'ngSanitize',
   'mgcrea.ngStrap',
   'auth',
   'profile',
@@ -8,11 +9,12 @@ angular.module('MyApp', [
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'home/views/home.html'
       })
       .when('/404', {
         template: '<h1>Sorry, page not found</h1>'
       })
       .otherwise({ redirectTo: '/404' });
+
 
   });

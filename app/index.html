@@ -13,24 +13,8 @@
   <link href="stylesheets/styles.css" rel="stylesheet">
 </head>
 <body>
-<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/"><i class="ion-ios7-pulse-strong"></i> Demo Angular Auth</a>
-  </div>
-  <ul class="nav navbar-nav">
-    <li><a href="/#/"><i class="fa fa-home"></i> Home</a></li>
-    <li><a href="/#/posts">Blog</a></li>
 
-  </ul>
-  <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
-    <li><a href="/#/login"><i class="fa fa-sign-in"></i> Login</a></li>
-    <li><a href="/#/signup">Sign up</a></li>
-  </ul>
-  <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-    <li><a href="/#/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-    <li><a href="/#/profile"><i class="fa fa-gear"></i> Profile</a></li>
-  </ul>
-</div>
+<ng-include src="'home/views/navbar.html'"></ng-include>
 
 <div ng-view class="fadeZoom"></div>
 
@@ -38,6 +22,7 @@
 <script src="vendor/angular/angular.js"></script>
 <script src="vendor/angular-route/angular-route.js"></script>
 <script src="vendor/angular-messages/angular-messages.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
 <script src="vendor/angular-animate/angular-animate.js"></script>
 <script src="vendor/angular-strap/dist/angular-strap.js"></script>
 <script src="vendor/angular-strap/dist/angular-strap.tpl.js"></script>
@@ -45,7 +30,7 @@
 
 <!-- Application Code -->
 <script src="app.js"></script>
-<script src="controllers/navbar.js"></script>
+<script src="home/navbar.js"></script>
 <script src="profile/profile.module.js"></script>
 <script src="profile/profile.controller.js"></script>
 <script src="profile/profile.accountService.js"></script>
