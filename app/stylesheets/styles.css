@@ -45,13 +45,13 @@ a {
 }
 
 .navbar-default .navbar-brand {
-  color: #333;
-  background-color: #ffe939;
+  color: #fff;
+  background-color: #ce832c;
 }
 
 .navbar-default .navbar-brand:hover {
-  color: #ffe939;
-  background-color: #333;
+  color: #ce832c;
+  background-color: #fff;
 }
 
 .navbar-brand {
