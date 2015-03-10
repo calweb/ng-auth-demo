@@ -1,5 +1,20 @@
-<section>
-    <h1>{{postsCtl.post.title}}</h1>
-    <p>{{postsCtl.post.content}}</p>
-    <a href="#/posts/{{postsCtl.post._id}}/edit">Edit</a> | <a ng-click="postsCtl.deletePost(postsCtl.post._id)">Delete</a>
-</section>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h1 class="panel-title pull-left">{{postsCtl.post.title}}</h1>
+      <div class="btn-group pull-right" ng-if="postsCtl.isAuthenticated()">
+        <a class="btn btn-warning" href="#/posts/{{postsCtl.post._id}}/edit">Edit</a>
+        <a class="btn btn-danger" ng-click="postsCtl.deletePost(postsCtl.post._id)">Delete</a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <section>
+              <p>{{postsCtl.post.content}}</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,21 @@
-<a href="#/posts/new" class="btn btn-success">Create New Post</a>
-<section data-ng-repeat="post in postsCtl.posts">
-    <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
-    <a href="#/posts/{{post._id}}">view more</a>
-</section>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h1 class="panel-title pull-left">Blog Posts</h1>
+      <div class="btn-group pull-right">
+        <a ng-if="postsCtl.isAuthenticated()" href="#/posts/new" class="btn btn-success btn-sm">Create New Post</a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <section data-ng-repeat="post in postsCtl.posts">
+              <h2>{{post.title}}</h2>
+              <p>{{post.content | limitTo: 255}}</p>
+              <a href="#/posts/{{post._id}}">view more</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

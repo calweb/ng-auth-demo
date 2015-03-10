@@ -4,8 +4,18 @@
     angular
         .module('posts', [
             "ngRoute"
+
         ])
         .config(function ($routeProvider) {
+          var checkAuth = function ($q, $location, $auth) {
+            var dfd = $q.defer();
+            if(!$auth.isAuthenticated()) {
+              $location.path('/login');
+            } else {
+              dfd.resolve();
+            }
+            return dfd.promise;
+          };
             $routeProvider
                 .when('/posts', {
                     templateUrl: 'posts/views/list.html',
@@ -13,7 +23,10 @@
                 })
                 .when('/posts/new', {
                     templateUrl: 'posts/views/create.html',
-                    controller: 'postsController as postsCtl'
+                    controller: 'postsController as postsCtl',
+                    resolve: {
+                      authenticated: checkAuth
+                    }
                 })
                 .when('/posts/:postId', {
                     templateUrl: 'posts/views/show.html',
@@ -21,7 +34,10 @@
                 })
                 .when('/posts/:postId/edit', {
                     templateUrl: 'posts/views/edit.html',
-                    controller: 'postsController as postsCtl'
+                    controller: 'postsController as postsCtl',
+                    resolve: {
+                      authenticated: checkAuth
+                    }
                 });
         });
 

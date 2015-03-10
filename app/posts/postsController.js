@@ -3,9 +3,12 @@
 
     angular
         .module('posts')
-        .controller('postsController', ['postsService', '$location', '$routeParams',
-        function(postsService, $location, $routeParams) {
+        .controller('postsController', ['postsService', '$location', '$routeParams', '$auth',
+        function(postsService, $location, $routeParams, $auth) {
             var postsCtl = this;
+            postsCtl.isAuthenticated = function () {
+              return $auth.isAuthenticated();
+            }
             postsService.getPosts().success(function (posts) {
                 postsCtl.posts = posts;
             });

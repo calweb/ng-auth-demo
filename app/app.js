@@ -5,26 +5,14 @@ angular.module('MyApp', [
   'auth',
   'profile',
   'posts'])
-  .config(function($routeProvider, $authProvider) {
-    var checkAuth = function ($q, $location, $auth) {
-      var dfd = $q.defer();
-      if(!$auth.isAuthenticated()) {
-        $location.path('/login');
-      } else {
-        dfd.resolve();
-      }
-      return dfd.promise;
-    };
-
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/home.html'
       })
-      .when('/testAuth', {
-        template: '<h1>You Made it!</h1>',
-        resolve: {
-          authenticated: checkAuth
-        }
-      });
+      .when('/404', {
+        template: '<h1>Sorry, page not found</h1>'
+      })
+      .otherwise({ redirectTo: '/404' });
 
   });

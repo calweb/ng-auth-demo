@@ -1,3 +1,25 @@
-<input type="text" data-ng-model="postsCtl.post.title" value="{{postsCtl.post.title}}">
-<textarea data-ng-model="postsCtl.post.content">{{postsCtl.post.content}}</textarea>
-<button data-ng-click="postsCtl.editPost(postsCtl.post)">Update Post</button>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>{{postsCtl.post.title}}</h1></div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <section>
+            <div class="form-group">
+              <label for="postTitle">Post Title</label>
+              <input class="form-control" name="postTitle" type="text" data-ng-model="postsCtl.post.title" value="{{postsCtl.post.title}}">
+            </div>
+            <div class="form-group">
+              <label for="postContent">Post Content</label>
+              <textarea name="postContent" class="form-control" data-ng-model="postsCtl.post.content">{{postsCtl.post.content}}</textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" data-ng-click="postsCtl.editPost(postsCtl.post)">Update Post</button>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,27 @@
-<input type="text" data-ng-model="post.title">
-<textarea data-ng-model="post.content"></textarea>
-<button data-ng-click="postsCtl.createPost(post)">Create</button>
+
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h1>New Post</h1></div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <section>
+            <div class="form-group">
+              <label for="newTitle">Post Title</label>
+              <input class="form-control" type="text" name="newTitle" data-ng-model="post.title" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="newContent">Post Content</label>
+              <textarea class="form-control" name="newContent" data-ng-model="post.content"></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" data-ng-click="postsCtl.createPost(post)">Create</button>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
