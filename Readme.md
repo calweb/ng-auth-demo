@@ -16,6 +16,11 @@ Please refer to Satellizer's Documentation to learn how to configure and obtain 
 
 ### Deploying to Heroku
 
+- heroku create <appname>
+- heroku addons:add mongolab
+- heroku push origin master 
+
+
 ### Directory Structure
 
 ``` javascript
