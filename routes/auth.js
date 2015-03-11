@@ -52,6 +52,7 @@ router.route('/login')
  */
  router.route('/signup')
   .post(function(req, res) {
+    console.log("Hi");
     User.findOne({ email: req.body.email }, function(err, existingUser) {
       if (existingUser) {
         return res.status(409).send({ message: 'Email is already taken' });
