@@ -1,6 +1,5 @@
 angular.module('auth')
   .controller('SignupCtrl', function($scope, $alert, $auth) {
-    console.log($scope.website);
     $scope.signup = function() {
       $auth.signup({
         displayName: $scope.displayName,
