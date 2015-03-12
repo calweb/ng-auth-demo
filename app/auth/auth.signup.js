@@ -1,10 +1,12 @@
 angular.module('auth')
   .controller('SignupCtrl', function($scope, $alert, $auth) {
+    console.log($scope.website);
     $scope.signup = function() {
       $auth.signup({
         displayName: $scope.displayName,
         email: $scope.email,
-        password: $scope.password
+        password: $scope.password, 
+        website: $scope.website
       }).catch(function(response) {
         if (typeof response.data.message === 'object') {
           angular.forEach(response.data.message, function(message) {
