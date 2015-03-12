@@ -58,10 +58,11 @@ router.route('/login')
         return res.status(409).send({ message: 'Email is already taken' });
       }
       var user = new User({
+        // add new propertied for user here as well as entities/user.js and routes/profile.js
+        // newProperty: req.body.newProperty,
         displayName: req.body.displayName,
         email: req.body.email,
         password: req.body.password,
-        website: req.body.website
       });
       user.save(function() {
         res.send({ token: createToken(user) });
