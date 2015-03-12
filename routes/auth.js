@@ -60,7 +60,8 @@ router.route('/login')
       var user = new User({
         displayName: req.body.displayName,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        website: req.body.website
       });
       user.save(function() {
         res.send({ token: createToken(user) });
