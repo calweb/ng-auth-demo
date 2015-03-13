@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var userSchema = new mongoose.Schema({
+  // add any additional properties here as well as routes/auth.js and routes/profile.js
+  // newProperty: String,
   email: { type: String, unique: true, lowercase: true },
   password: { type: String, select: false },
   displayName: String,
