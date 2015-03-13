@@ -6,6 +6,7 @@ angular.module('MyApp', [
   'auth',
   'profile',
   'posts'])
+
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
@@ -15,6 +16,4 @@ angular.module('MyApp', [
         template: '<h1>Sorry, page not found</h1>'
       })
       .otherwise({ redirectTo: '/404' });
-
-
   });
