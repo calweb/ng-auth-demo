@@ -1,7 +1,10 @@
 angular.module('auth')
   .controller('LoginCtrl', function($scope, $alert, $auth) {
     $scope.login = function() {
-      $auth.login({ email: $scope.email, password: $scope.password })
+      $auth.login({
+          email: $scope.email,
+          password: $scope.password
+        })
         .then(function(res) {
           console.log(res.data);
           $alert({

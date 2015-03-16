@@ -30,7 +30,9 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
           }
         }
       })
-      .otherwise({ redirectTo: '/' });
+      .otherwise({
+        redirectTo: '/'
+      });
 
 
     $authProvider.facebook({
@@ -38,7 +40,7 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
     });
 
     $authProvider.google({
-      clientId: '812305721524-obkek9k8ktou4rbiucn7hlc17t9lrhsl.apps.googleusercontent.com'
+      clientId: '587791673437-u2c6ujn8ct3nihm0vaq9cb0f0ukd33f2.apps.googleusercontent.com'
     });
 
     $authProvider.github({
