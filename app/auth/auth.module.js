@@ -30,7 +30,9 @@ angular.module('auth', ['ngMessages', 'ngRoute', 'mgcrea.ngStrap', 'satellizer']
           }
         }
       })
-      .otherwise({ redirectTo: '/' });
+      .otherwise({
+        redirectTo: '/'
+      });
 
 
     $authProvider.facebook({

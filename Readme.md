@@ -18,7 +18,7 @@ Please refer to Satellizer's Documentation to learn how to configure and obtain 
 
 - heroku create appName
 - heroku addons:add mongolab
-- heroku push origin master 
+- git push heroku master 
 
 
 ### Directory Structure

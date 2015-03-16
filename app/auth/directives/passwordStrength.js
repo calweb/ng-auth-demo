@@ -15,19 +15,19 @@ angular.module('auth')
 
         element.bind('keyup', function() {
           var matches = {
-                positive: {},
-                negative: {}
-              },
-              counts = {
-                positive: {},
-                negative: {}
-              },
-              tmp,
-              strength = 0,
-              letters = 'abcdefghijklmnopqrstuvwxyz',
-              numbers = '01234567890',
-              symbols = '\\!@#$%&/()=?¿',
-              strValue;
+              positive: {},
+              negative: {}
+            },
+            counts = {
+              positive: {},
+              negative: {}
+            },
+            tmp,
+            strength = 0,
+            letters = 'abcdefghijklmnopqrstuvwxyz',
+            numbers = '01234567890',
+            symbols = '\\!@#$%&/()=?¿',
+            strValue;
 
           angular.forEach(dots, function(el) {
             el.style.backgroundColor = '#ebeef1';
