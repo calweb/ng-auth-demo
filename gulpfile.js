@@ -1,6 +1,6 @@
 var gulp = require('gulp');
-// var sass = require('gulp-ruby-sass');
 var args = require('yargs').argv;
+var browserSync = require('browser-sync');
 var config = require('./gulp.config')();
 var del = require('del');
 var $ = require('gulp-load-plugins')({
@@ -95,6 +95,7 @@ gulp.task('serve-dev', ['inject'], function() {
     })
     .on('start', function() {
       log('*** Server started ***');
+      startBrowserSync();
     })
     .on('crash', function() {
       log('*** Server crashed: Script crashed for some reason ***');
@@ -123,4 +124,45 @@ function log(msg) {
 function clean(path, done) {
   log('Cleaning: ' + $.util.colors.blue(path));
   del(path, done);
+}
+
+function changeEvent(event) {
+  var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
+  log('File ' + event.path.replace(srcPattern, '') + ' ' + event.type);
+}
+
+function startBrowserSync() {
+  if (browserSync.active) {
+    return;
+  }
+
+  log('Starting browser-sync on port ' + port);
+
+  gulp.watch([config.sass], ['sass'])
+    .on('change', function(event) {
+      changeEvent(event);
+    });
+
+  var options = {
+    proxy: 'localhost:' + port,
+    port: 3000,
+    files: [
+      config.app + '**/*.*',
+      config.temp + '**/*.css'
+    ],
+    ghostMode: {
+      clicks: true,
+      location: false,
+      forms: true,
+      scroll: true
+    },
+    injectChanges: true,
+    logFileChanges: true,
+    logLevel: 'debug',
+    logPrefix: 'gulp-patterns',
+    notify: true,
+    reloadDelay: 1000
+  };
+
+  browserSync(options);
 }
