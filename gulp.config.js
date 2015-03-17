@@ -20,8 +20,10 @@ module.exports = function() {
     index: app + 'index.html',
     css: temp + 'styles.css',
     js: [
+      app + '*.module.js',
       app + '**/*.module.js',
       app + '**/*.js',
+      '!' + app + 'vendor/**/*.js',
       '!' + app + '**/*.spec.js'
     ],
     sass: app + 'sass/styles.scss',

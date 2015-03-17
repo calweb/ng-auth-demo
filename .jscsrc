@@ -13,7 +13,7 @@
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
 
-    "validateIndentation": 2,
+    
     "validateQuoteMarks": "'",
 
     "disallowMultipleLineStrings": true,

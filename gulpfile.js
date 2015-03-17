@@ -6,7 +6,8 @@ var del = require('del');
 var $ = require('gulp-load-plugins')({
   lazy: true,
   rename: {
-    'gulp-ruby-sass': 'sass'
+    'gulp-ruby-sass': 'sass',
+    'gulp-angular-filesort': 'filesort'
   }
 });
 
@@ -43,7 +44,7 @@ gulp.task('clean-sass', function(done) {
 });
 
 gulp.task('sass-watch', function() {
-  gulp.watch([config.allSass], ['sass']);
+  gulp.watch([config.sass], ['sass']);
 });
 
 gulp.task('wiredep', function() {
@@ -55,7 +56,10 @@ gulp.task('wiredep', function() {
   return gulp
     .src(config.index)
     .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(gulp.src(config.js)
+      .pipe($.filesort()), {
+        relative: true
+      }))
     .pipe(gulp.dest(config.app));
 });
 
@@ -64,8 +68,23 @@ gulp.task('inject', ['wiredep', 'sass'], function() {
 
   return gulp
     .src(config.index)
-    .pipe($.inject(gulp.src(config.css)))
-    .pipe(gulp.dest(config.src));
+    .pipe($.inject(gulp.src(config.css), {
+      relative: true
+    }))
+    .pipe(gulp.dest(config.app));
+});
+
+gulp.task('serve-dev', ['inject'], function() {
+  var isDev = true;
+  var nodemonOptions = {
+    script: config.nodeServer, //TODO app.js
+    delayTime: 1,
+    env: {
+      'PORT': port,
+      'NODE_ENV': isDev ? 'dev' : 'build';
+    }
+  }
+  $.nodemon
 });
 
 /////////////////// Custom functions ///////////////////////////////
