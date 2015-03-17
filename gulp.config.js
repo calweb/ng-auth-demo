@@ -1,6 +1,7 @@
 module.exports = function() {
   var app = './app/';
   var temp = './app/.tmp/';
+  var server = './';
 
   var config = {
     temp: temp,
@@ -20,11 +21,14 @@ module.exports = function() {
     index: app + 'index.html',
     css: temp + 'styles.css',
     js: [
+      app + '*.module.js',
       app + '**/*.module.js',
       app + '**/*.js',
+      '!' + app + 'vendor/**/*.js',
       '!' + app + '**/*.spec.js'
     ],
     sass: app + 'sass/styles.scss',
+    server: server,
 
 
     // Bower and NPM locations
@@ -32,7 +36,11 @@ module.exports = function() {
       json: require('./bower.json'),
       directory: app + 'vendor/',
       ignorePath: '../..'
-    }
+    },
+
+    // Node settings
+    defaultPort: 4567,
+    nodeServer: './server.js'
 
   };
 

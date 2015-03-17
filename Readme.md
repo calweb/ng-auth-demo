@@ -13,6 +13,9 @@ Please refer to Satellizer's Documentation to learn how to configure and obtain 
 
 
 ### Running Locally
+- In terminal you need to start mongo => $mongod
+- gulp serve-dev // starts up the server, opens browser and starts livereload 
+
 
 ### Deploying to Heroku
 

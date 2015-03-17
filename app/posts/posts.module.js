@@ -4,7 +4,6 @@
   angular
     .module('posts', [
       'ngRoute'
-
     ])
     .config(function($routeProvider) {
       var checkAuth = function($q, $location, $auth) {
