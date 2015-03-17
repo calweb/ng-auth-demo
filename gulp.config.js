@@ -1,6 +1,7 @@
 module.exports = function() {
   var app = './app/';
   var temp = './app/.tmp/';
+  var server = './';
 
   var config = {
     temp: temp,
@@ -27,6 +28,7 @@ module.exports = function() {
       '!' + app + '**/*.spec.js'
     ],
     sass: app + 'sass/styles.scss',
+    server: server,
 
 
     // Bower and NPM locations
@@ -34,7 +36,11 @@ module.exports = function() {
       json: require('./bower.json'),
       directory: app + 'vendor/',
       ignorePath: '../..'
-    }
+    },
+
+    // Node settings
+    defaultPort: 7203,
+    nodeServer: './server.js'
 
   };
 

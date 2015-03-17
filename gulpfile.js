@@ -11,6 +11,8 @@ var $ = require('gulp-load-plugins')({
   }
 });
 
+var port = process.env.PORT || config.defaultPort;
+
 gulp.task('vet', function() {
   log('Analyzing source with JSHint and JSCS');
 
@@ -77,14 +79,30 @@ gulp.task('inject', ['wiredep', 'sass'], function() {
 gulp.task('serve-dev', ['inject'], function() {
   var isDev = true;
   var nodemonOptions = {
-    script: config.nodeServer, //TODO app.js
+    script: config.nodeServer,
     delayTime: 1,
     env: {
       'PORT': port,
-      'NODE_ENV': isDev ? 'dev' : 'build';
-    }
-  }
-  $.nodemon
+      'NODE_ENV': isDev ? 'dev' : 'build'
+    },
+    watch: [config.server]
+  };
+
+  return $.nodemon(nodemonOptions)
+    .on('restart', ['vet'], function(event) {
+      log('*** Server restarted ***');
+      log('files changed on restart:\n' + event);
+    })
+    .on('start', function() {
+      log('*** Server started ***');
+    })
+    .on('crash', function() {
+      log('*** Server crashed: Script crashed for some reason ***');
+    })
+    .on('exit', function() {
+      log('*** Server exited cleanly ***');
+    });
+
 });
 
 /////////////////// Custom functions ///////////////////////////////
