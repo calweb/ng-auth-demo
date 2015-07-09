@@ -152,7 +152,7 @@ function startBrowserSync() {
     ],
     ghostMode: {
       clicks: true,
-      location: false,
+      location: true,
       forms: true,
       scroll: true
     },
@@ -164,5 +164,7 @@ function startBrowserSync() {
     reloadDelay: 1000
   };
 
-  browserSync(options);
+  setTimeout(function() {
+    browserSync(options)
+  }, 100);
 }
