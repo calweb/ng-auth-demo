@@ -152,7 +152,7 @@ function startBrowserSync() {
     ],
     ghostMode: {
       clicks: true,
-      location: true,
+      location: false,
       forms: true,
       scroll: true
     },
