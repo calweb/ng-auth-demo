@@ -15,18 +15,23 @@ Please refer to Satellizer's Documentation to learn how to configure and obtain 
 ### Running Locally
 - In terminal you need to start mongo => mongod
 - If you get the following error when typing mongod `ERROR: dbpath (/data/db) does not exist.` then run the following
-  - sudo mkdir -p /data/db
-  - sudo chmod 0755 /data/db
-  - sudo chown $USER /data/db
+```bash
+$ sudo mkdir -p /data/db
+$ sudo chmod 0755 /data/db
+$ sudo chown $USER /data/db
+```
 
-- gulp serve-dev // starts up the server, opens browser and starts livereload
+- `gulp serve-dev` // starts up the server, opens browser and starts livereload
 
 ### Deploying to Heroku
 
-- heroku create appName
-- heroku addons:add mongolab
-- git push heroku master
+You'll need the [heroku cli toolbelt](https://toolbelt.heroku.com/) to perform the following commands.
 
+```bash
+$ heroku create appName
+$ heroku addons:add mongolab
+$ git push heroku master
+```
 
 ### Directory Structure
 
