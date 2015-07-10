@@ -164,5 +164,7 @@ function startBrowserSync() {
     reloadDelay: 1000
   };
 
-  browserSync(options);
+  setTimeout(function() {
+    browserSync(options)
+  }, 100);
 }
