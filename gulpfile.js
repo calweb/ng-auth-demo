@@ -3,7 +3,6 @@ var args = require('yargs').argv;
 var browserSync = require('browser-sync');
 var config = require('./gulp.config')();
 var del = require('del');
-var q = require('q');
 
 var $ = require('gulp-load-plugins')({
   lazy: true,
@@ -97,7 +96,7 @@ gulp.task('serve-dev', ['inject'], function() {
     })
     .on('start', function() {
       log('*** Server started ***');
-      startBrowserSync()
+      startBrowserSync();
     })
     .on('crash', function() {
       log('*** Server crashed: Script crashed for some reason ***');
@@ -134,8 +133,6 @@ function changeEvent(event) {
 }
 
 function startBrowserSync() {
-  var defer = q.defer();
-
   if (browserSync.active) {
     return;
   }
@@ -168,6 +165,7 @@ function startBrowserSync() {
     reloadDelay: 1000
   };
 
-  defer.promise.then(browserSync);
-  defer.resolve(options)
+  setTimeout(function() {
+    browserSync(options)
+  }, 100);
 }
