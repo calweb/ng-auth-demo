@@ -1,6 +1,5 @@
 {
   "directory": "app/vendor",
   "scripts": {
-    "postinstall": "gulp wiredep"
   }
 }
