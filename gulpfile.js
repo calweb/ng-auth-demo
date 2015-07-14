@@ -51,33 +51,6 @@ gulp.task('sass-watch', function() {
   gulp.watch([config.sass], ['sass']);
 });
 
-gulp.task('wiredep', function() {
-  log('Injecting bower components and Application JavaScripts => HTML');
-
-  var options = config.getWiredepOptions();
-  var wiredep = require('wiredep').stream;
-
-  return gulp
-    .src(config.index)
-    .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.js)
-      .pipe($.filesort()), {
-        relative: true
-      }))
-    .pipe(gulp.dest(config.app));
-});
-
-gulp.task('inject', ['wiredep', 'sass'], function() {
-  log('Injecting application CSS => HTML');
-
-  return gulp
-    .src(config.index)
-    .pipe($.inject(gulp.src(config.css), {
-      relative: true
-    }))
-    .pipe(gulp.dest(config.app));
-});
-
 gulp.task('serve-dev', ['inject'], function() {
   var isDev = true;
   var nodemonOptions = {
